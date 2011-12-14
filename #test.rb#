@@ -1,0 +1,27 @@
+
+
+# function ’¤Ë’¤è’¤ë’Ã±’°ì’½è’Íý
+
+a = [1, 3, "a", "t", "t", 3]  
+;; Ruby
+(autoload 'ruby-mode "ruby-mode"
+  "Mode for editing ruby source files" t)
+(setq auto-mode-alist
+      (append '(("\\.rb$" . ruby-mode)) auto-mode-alist))
+(setq interpreter-mode-alist (append '(("ruby" . ruby-mode))
+                                     interpreter-mode-alist))
+(autoload 'run-ruby "inf-ruby"
+  "Run an inferior Ruby process")
+(autoload 'inf-ruby-keys "inf-ruby"
+  "Set local key defs for inf-ruby in ruby-mode")
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+            (inf-ruby-keys)))
+b = [1,1,1,1,2]
+p a.uniq 
+p b.uniq  
+
+
+p "test " * 5 
+p sprintf("%*s",10,"apple")
+

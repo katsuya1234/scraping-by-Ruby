@@ -1,0 +1,43 @@
+
+
+
+# encoding: utf-8                                                                                                                                                                                         
+require 'open-uri'
+require 'json'
+require 'mysql'
+
+###### Get Company name                                                                                                                                                                                   
+@a = Array.new()
+db = Mysql::new("localhost","root","","companyapp_development")
+# company = db.query "select * from crunchdb_companylist"
+ stmt = db.prepare " Insert into crunchbase_peoplelist(person_permalink) values(?)"               
+
+#  @b = '<a href="/person/david-aronchick" title="David Aronchick">David Aronchick</a>
+#       <a href="/person/wes-maldonado" title="Wes Maldonado">Wes Maldonado</a></li><li><a href="/person/adrian-guzman-3" title="Adrian Guzman">Adrian Guzman</a>
+# </li><li><a href="/person/martin-stava" title="Martin Stava">Martin Stava</a></li><li><a href="/person/gilles-blanrosa" title="Gilles BianRosa">Gilles BianRosa</a>'
+
+
+@a = Array.new()
+@urls = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+
+for @url in @urls
+
+  open("http://www.crunchbase.com/people?c=#@url").each do |f|
+    @b = f.scan(/<a href=["]\/person\/(.*?)["] title/)
+    # print @b.class
+    @c = JSON.generate(@b)
+    if @c == [] then 
+    else
+     stmt.execute @c
+     puts @c
+    end
+  end
+  
+end
+
+# p $&
+
+
+
+
+

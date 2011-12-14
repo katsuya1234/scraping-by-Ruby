@@ -1,0 +1,51 @@
+###### Parse JSON file in Ruby an Insert into MySQL
+# encoding: utf-8 
+require 'open-uri'
+require 'json'
+require 'mysql'
+
+###### Get String file on the URL
+@a = Array.new()
+open("http://api.crunchbase.com/v/1/companies.js") do |f|
+@b = f.read
+end
+
+###### Parse into Ruby object 
+@c = JSON.parse @b
+
+##### Parce  Hash.Array class 
+# @c.each do |test|
+#  print test["name"]
+#  puts test["permalink"]
+# end
+  
+db = Mysql::new("localhost","root","","companyapp_development")
+# table = db.query("SELECT * from crunchbase_companylist limit 10")
+stmt = db.prepare " Insert into crunchbase_companylist(name2,permalink) values(?,?)"
+
+@c.each do |test|
+  stmt.execute test["name"],test["permalink"]
+end
+
+#print @table
+
+exit;
+
+
+
+
+
+
+## Input JSON file as String class 
+@json = JSON.generate [1, 2, {"a"=>3.141}, false, true, nil, 4..10]
+print @json
+print @json.class
+
+# Parse into Array class
+@test = JSON.parse @json
+print @test
+print @test.class
+print @test[2]
+
+# Make file read easy
+puts JSON.pretty_generate([1, 2, {"a"=>3.141}, false, true, nil, 4..10])

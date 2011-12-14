@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+$KCODE = "utf-8";
+
+require 'rubygems' 
+require 'json'
+require 'mysql'
+require 'igo-ruby'
+require 'nokogiri'
+
+a = Array.new()
+b = Array.new()
+d = Array.new()
+e = Array.new()
+f = Array.new()
+g = Array.new()
+
+### 0.tweet_id ’¤Ç’¤¿’¤¿’¤à
+my = Mysql::new("localhost","root","ud0nud0n","companyapp_development")
+res = my.query("select * from tweet_tests where query = 'DeNA' ")
+
+### 1.MySQL’¤«’¤é’ÇÛ’Îó’Ãê’½Ð’¤·’Àµ’µ¬’É½’¸½’¤Ç’Ê£’¿ô’ÇÛ’Îó’¤Ë’Ê¬’³ä 
+#  row[0]:tweet_id                                                                                                                                                       
+#  row[1]:tweet time
+#  row[3]:user_id     
+#  row[4]:body
+#  row[6]:query
+# $`
+# $&
+# $'
+
+res.each do |row|
+/RT/ =~ row[4]
+      a << $`
+      b << $'
+      c = row[1]
+      d << c[5..12]
+      e << row[0]
+end
+
+p e.length
+p e.uniq.length
+
+### 2.’ÇÛ’Îó’¤ò’½Ð’¸½’¿ô’¤Ç’¿ô’¤¨’¥Ï’¥Ã’¥·’¥å’ÊÑ’´¹
+h1 = Hash.new(0)
+b.each {|key| h1[key] += 1 }
+
+h2 = Hash.new(0)
+d.each {|key| h2[key] += 1 }
+
+### 3. ’¥Ï’¥Ã’¥·’¥å’¤òValue’ÊÌ’¤Ç’ÊÂ’¤Ù’ÂØ’¤¨
+h4 = Array.new(0)
+h5 = Array.new(0)
+h4 = h1.sort{|a, b|b[1] <=> a[1]}.each{|name, value|}
+
+h3 = Array.new(0)
+p h3 = h2.sort{|a, b|b[0] <=> a[0]}.each{|name, value|}
+
+
+puts h4.class
+
+#puts h1
+#puts h2
+#puts h3.sort
+
+puts h1.class
+puts h2.class
+puts h3.class
+
+
+
+x = Array.new()
+y = Array.new()
+aa = Array.new()
+
+ # h2.keys.sort
+ # h2.values.sort

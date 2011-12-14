@@ -1,0 +1,12 @@
+
+
+
+require 'open-uri'
+
+@a = Array.new()
+open("http://api.crunchbase.com/v/1/companies.js") do |f| 
+  @a << f
+end
+
+
+p @a

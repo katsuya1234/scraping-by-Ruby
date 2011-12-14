@@ -1,0 +1,61 @@
+
+
+###### Parse JSON file in Ruby an Insert into MySQL                                                                                                                                                       
+# encoding: utf-8                                                                                                                                                                                         
+require 'open-uri'
+require 'json'
+require 'mysql'
+
+###### Get String file on the URL             
+db = Mysql::new("localhost","root","","companyapp_development")
+
+ table = db.prepare "Insert into crunchdb_personinfo
+
+(first_name,last_name,permalink,crunchbase_url,homepage_url,birth_place,twitter_username,blog_url,born_year,tag_list,alias_list,created_at,updated_at,overview,degree,relationships,investments,milestones,web_presences) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+
+person = db.query "select * from crunchdb_peoplelist"
+
+
+person.each do |test|
+  @a = test[0].scan(/["](.*?)["]/)
+  @b = @a.join
+
+
+  begin
+    open("http://api.crunchbase.com/v/1/person/#@b.js") do |f|
+      @d = f.read
+    end
+    @c = JSON.parse @d
+    
+    @first_name = @c["first_name"]
+    @last_name = @c["last_name"]
+  puts  @permalink = @c["permalink"]
+    @crunchbase_url = @c["crunchbase_url"]
+    @homepage_url = @c["homepage_url"]
+    @birthplace = @c["birthplace"]
+    @twitter_username = @c["twitter_username"]
+    @blog_url = @c["blog_url"]
+    @born_year = @c["born_year"]
+    @born_year.class
+    @tag_list = @c["tag_list"]
+    @alias_list = JSON.generate(@c["alias_list"].to_a)
+    @created_at = @c["created_at"]
+    @updated_at = @c["updated_at"]
+    @overview = @c["overview"]
+    @degree = JSON.generate(@c["degree"].to_a)
+  p @degree.class
+
+    @relationships = JSON.generate(@c["relationships"])
+    @investments = JSON.generate(@c["investments"])
+    @milestones = JSON.generate(@c["milestones"])
+    @web_presences = JSON.generate(@c["web_presences"])
+
+table.execute @c["first_name"],@c["last_name"],@c["permalink"],@c["crunchbase_url"],@c["homepage_url"],@c["birthplace"],@c["twitter_username"],@c["blog_url"],@c["born_year"],@c["tag_list"],@alias_list,@c["created_at"],@c["updated_at"],@c["overview"],@degree,@relationships,@investments,@milestones,@web_presences
+
+  rescue Exception
+    
+end 
+
+
+end
+

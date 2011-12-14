@@ -1,0 +1,27 @@
+
+
+
+require 'open-uri'
+require 'json'
+
+@a = Array.new()
+
+open("http://api.crunchbase.com/v/1/people.js") do |f|
+   @b = f.read
+   @a << @b
+end
+
+print @a.class
+print @a
+
+
+exit;
+
+    @tweet_a.each do |row|
+      /RT/ =~ row["tweet_body"]
+      @a << $`
+      @b << $'
+      /:*:/ =~ row["tweet_time"]
+      @d << $`
+    end
+

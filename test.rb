@@ -1,0 +1,66 @@
+$KCODE = "utf-8";
+
+
+# ----------------------------------
+p '1.既存functionによる処理'
+
+a = [1, 3, "a", "t", "t", 3]  
+p a.uniq
+
+b = [1,1,1,1,2]
+p b.uniq  
+
+p "test " * 5 
+
+p sprintf("%*s",10,"apple")
+
+ 
+c = "あいうえお"
+
+p c.concat("かきくけこ")
+
+# -----------------------------------
+p "2. method 定義での処理"
+
+a = [1,3]
+b = [2,3]
+c = "あいうえお"
+d = a[1] * b[1] 
+e = a[0] * b[0]
+
+def multi(n)
+  return  n * 5
+end 
+
+def triple(n,m,l)
+  return n * m * l
+end 
+
+p multi(a)
+p multi(b)
+p multi(c)
+p multi(d)
+p multi(e)
+
+p triple(1,2,3)
+
+# -----------------------------------   
+p "配列、ハッシュ処理"
+
+
+a = [1,2,3,4,5,6,7,8,9,10]
+b = {a=>1,b=>2,c=>3,d=>4,e=>5}
+
+c = {
+    "Takasi" => 175,
+    "Youko" => 162,
+    "Konta" => 183,
+    "Fumiko" => 157
+}
+
+
+p a[5] 
+p b[d]
+p c["Takasi"]
+
+

@@ -1,0 +1,6 @@
+
+
+
+@a = "testsakosduagidshiagiodsna"
+
+p @a.scan(/t(.*?)a/)
