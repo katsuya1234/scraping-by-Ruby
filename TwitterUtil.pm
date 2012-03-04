@@ -12,11 +12,11 @@ use Time::HiRes qw(sleep);
 
 package TwitterUtil;
 
-#ˆÈ‰º‚ğ©•ª‚ÌApplication—p‚É‘‚«Š·‚¦‚Ä‚­‚¾‚³‚¢BiSearch API‚Ìê‡‚Í‹ó‚Å‚àOKj
-our $AccessToken="66922542-yuIbgxPQKWqE4JhkP7kRfoKQtND4ekdRttL4hng8M";
-our $AccessTokenSecret="rjSlKjAgFLg5AUiPIqm16bivVCdVrlR6coo3FWsYcw";
-our $ConsumerKey="gKySNOYoRE3eVc1BM1M9dA";
-our $ConsumerSecret="pm0LkXrAdYP9lVJGOcMIM5F08pZm3JmtNdRK6VEow";
+#ï¿½È‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Applicationï¿½pï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½iSearch APIï¿½Ìê‡ï¿½Í‹ï¿½ï¿½Å‚ï¿½OKï¿½j
+our $AccessToken="hoge";
+our $AccessTokenSecret="hoge";
+our $ConsumerKey="hoge";
+our $ConsumerSecret="hoge";
   
 
 sub new{
